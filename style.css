@@ -384,69 +384,66 @@ footer {
     color: white;
 
 }
-/* Center the entire layout on the page */
+/* Page Background & Centering */
 body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    background-color: #0f141d; /* Dark outer background */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 20px;
     box-sizing: border-box;
 }
 
-/* Container holding both cards side-by-side */
+/* Main Container */
 .main-wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Desktop: Side-by-side */
     justify-content: center;
-    align-items: stretch; /* Forces both cards to match in equal height */
+    align-items: stretch;
     gap: 24px;
     width: 100%;
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
-/* Style the notebook wrapper to match the dark game card design */
+/* Dark Card Styling for Both Containers */
+.game-container,
 .notebook-container {
     flex: 1;
-    background-color: #1e2332;                   /* Matching dark background */
-    border-radius: 16px;                         /* Matching rounded corners */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);  /* Matching drop shadow */
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle dark border */
-    overflow: hidden;                            /* Clips iframe inside rounded corners */
+    background-color: #1e2332; /* Matching dark theme color */
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    min-height: 620px;                           /* Matches height of game card */
 }
 
-/* Force iframe to expand smoothly inside dark container */
-.notebook-container iframe,
-.notebook-container .kaggle-embed-wrapper {
+/* Force Notebook iframe to fill the card */
+.notebook-container iframe {
     width: 100% !important;
     height: 100% !important;
+    min-height: 600px;
     border: none !important;
-    flex-grow: 1;
+    border-radius: 8px;
 }
 
-/* Mobile responsive layout */
-@media (max-width: 850px) {
+/* Mobile Stacking Rule */
+@media (max-width: 950px) {
     .main-wrapper {
-        flex-direction: column;
+        flex-direction: column; /* Drops the notebook screen BELOW the game */
         align-items: center;
     }
 
     .game-container,
     .notebook-container {
         width: 100%;
-        max-width: 480px;
+        max-width: 500px; /* Centers cards vertically on phone screens */
     }
 
-    .notebook-container {
+    .notebook-container iframe {
         min-height: 500px;
     }
 }
