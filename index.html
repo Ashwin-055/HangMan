@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Letter Hangman</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🎯</span>
+                <h1>5-LETTER HANGMAN</h1>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <span class="stat-label">STREAK</span>
+                    <span class="stat-value" id="current-streak">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">BEST</span>
+                    <span class="stat-value" id="best-streak">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">WINS</span>
+                    <span class="stat-value" id="total-wins">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-area">
+            <section class="hangman-section">
+                <div class="gallows-container">
+                    <svg id="hangman-svg" viewBox="0 0 200 220">
+                        <!-- Gallows Base & Structure -->
+                        <line x1="20" y1="200" x2="180" y2="200" class="gallows-line base" />
+                        <line x1="60" y1="200" x2="60" y2="20" class="gallows-line pole" />
+                        <line x1="60" y1="20" x2="140" y2="20" class="gallows-line beam" />
+                        <line x1="140" y1="20" x2="140" y2="50" class="gallows-line rope" />
+                        <line x1="60" y1="60" x2="100" y2="20" class="gallows-line brace" />
+
+                        <!-- Body Parts -->
+                        <circle cx="140" cy="68" r="18" class="body-part" id="part-0" />
+                        <line x1="140" y1="86" x2="140" y2="138" class="body-part" id="part-1" />
+                        <line x1="140" y1="100" x2="115" y2="128" class="body-part" id="part-2" />
+                        <line x1="140" y1="100" x2="165" y2="128" class="body-part" id="part-3" />
+                        <line x1="140" y1="138" x2="115" y2="178" class="body-part" id="part-4" />
+                        <line x1="140" y1="138" x2="165" y2="178" class="body-part" id="part-5" />
+                    </svg>
+                </div>
+                <div class="tries-remaining">
+                    <span>Mistakes:</span>
+                    <span id="lives-counter" class="lives-badge">0 / 6</span>
+                </div>
+            </section>
+
+            <section class="word-section">
+                <div id="word-display" class="word-display">
+                    <!-- Letter slots dynamically inserted -->
+                </div>
+            </section>
+
+            <section class="keyboard-section">
+                <div id="keyboard" class="keyboard">
+                    <!-- Virtual keyboard generated dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <button id="new-game-btn" class="btn btn-primary">🔄 New Word</button>
+            <button id="sound-toggle-btn" class="btn btn-secondary">🔊 Sound On</button>
+        </footer>
+    </div>
+
+    <!-- Victory/Defeat Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div id="modal-icon" class="modal-icon">🎉</div>
+            <h2 id="modal-title">You Won!</h2>
+            <p id="modal-message">Great job guessing the word.</p>
+            <div class="word-reveal-box">
+                <span class="reveal-label">THE WORD WAS</span>
+                <span id="revealed-word" class="revealed-word">WORD</span>
+                <a id="dict-link" href="#" target="_blank" rel="noopener" class="dict-link">📖 Definition & Meaning</a>
+            </div>
+            <button id="modal-action-btn" class="btn btn-large">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
