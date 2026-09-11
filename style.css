@@ -394,3 +394,25 @@ footer {
     color: white;
 
 }
+.main-wrapper {
+    display: flex;
+    flex-direction: row; /* Default: side-by-side on desktop */
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .main-wrapper {
+        flex-direction: column; /* Stacks the notebook below the game on phone screens */
+        align-items: center;
+    }
+
+    /* Ensures both sections scale cleanly to full phone width */
+    .app-container,
+    .notebook-container {
+        width: 100%;
+        max-width: 100%;
+    }
+}
