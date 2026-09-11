@@ -22,16 +22,6 @@
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-}
-
 .app-container {
     width: 100%;
     max-width: 540px;
@@ -394,39 +384,60 @@ footer {
     color: white;
 
 }
+/* Center the entire layout on the page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Wrapper containing the game and notebook side-by-side */
 .main-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center; /* Centers both items horizontally */
+    justify-content: center;
     align-items: flex-start;
     gap: 24px;
-    max-width: 1200px;       /* Keeps layout contained */
-    margin: 0 auto;          /* Centers wrapper on the page */
     width: 100%;
-    padding: 20px;
+    max-width: 1200px; /* Keeps elements contained in the middle */
+    margin: 0 auto;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 850px) {
+/* Expand the Kaggle notebook frame */
+.notebook-container {
+    flex: 1; /* Expands horizontally to fill remaining space */
+    width: 100%;
+    min-width: 400px;
+}
+
+/* Force the embedded Kaggle iframe to expand vertically and horizontally */
+.notebook-container iframe, 
+.kaggle-embed-wrapper {
+    width: 100% !important;
+    height: 700px !important; /* Fixes the tiny squished iframe */
+    min-height: 600px;
+    border-radius: 12px;
+    border: none;
+}
+
+/* Responsive behavior: Stack on smaller screens / mobile */
+@media (max-width: 900px) {
     .main-wrapper {
         flex-direction: column;
         align-items: center;
     }
 
+    .game-container,
     .notebook-container {
-        min-width: 100%;
+        width: 100%;
+        max-width: 500px;
     }
-}
-/* Allow the notebook section to expand */
-.notebook-container {
-    flex: 1;                 /* Fills remaining horizontal space */
-    width: 100%;
-    min-width: 450px;        /* Prevents it from becoming too narrow */
-}
 
-/* Make embedded notebook iframe tall and responsive */
-.notebook-container iframe {
-    width: 100%;
-    height: 650px;           /* Adjust vertical height as needed */
-    border-radius: 12px;
+    .notebook-container iframe {
+        height: 500px !important;
+    }
 }
