@@ -395,37 +395,44 @@ body {
     box-sizing: border-box;
 }
 
-/* Wrapper containing the game and notebook side-by-side */
+/* Container holding both cards side-by-side */
 .main-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch; /* Forces both cards to match in equal height */
     gap: 24px;
     width: 100%;
-    max-width: 1200px; /* Keeps elements contained in the middle */
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Expand the Kaggle notebook frame */
+/* Style the notebook wrapper to match the dark game card design */
 .notebook-container {
-    flex: 1; /* Expands horizontally to fill remaining space */
-    width: 100%;
-    min-width: 400px;
+    flex: 1;
+    background-color: #1e2332;                   /* Matching dark background */
+    border-radius: 16px;                         /* Matching rounded corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);  /* Matching drop shadow */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle dark border */
+    overflow: hidden;                            /* Clips iframe inside rounded corners */
+    display: flex;
+    flex-direction: column;
+    min-height: 620px;                           /* Matches height of game card */
 }
 
-/* Force the embedded Kaggle iframe to expand vertically and horizontally */
-.notebook-container iframe, 
-.kaggle-embed-wrapper {
+/* Force iframe to expand smoothly inside dark container */
+.notebook-container iframe,
+.notebook-container .kaggle-embed-wrapper {
     width: 100% !important;
-    height: 700px !important; /* Fixes the tiny squished iframe */
-    min-height: 600px;
-    border-radius: 12px;
-    border: none;
+    height: 100% !important;
+    border: none !important;
+    flex-grow: 1;
 }
 
-/* Responsive behavior: Stack on smaller screens / mobile */
-@media (max-width: 900px) {
+/* Mobile responsive layout */
+@media (max-width: 850px) {
     .main-wrapper {
         flex-direction: column;
         align-items: center;
@@ -434,10 +441,10 @@ body {
     .game-container,
     .notebook-container {
         width: 100%;
-        max-width: 500px;
+        max-width: 480px;
     }
 
-    .notebook-container iframe {
-        height: 500px !important;
+    .notebook-container {
+        min-height: 500px;
     }
 }
