@@ -386,6 +386,8 @@ footer {
 }
 /* Center the entire layout on the page */
 body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
